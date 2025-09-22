@@ -379,7 +379,11 @@
       IgnoreStandardErrorWarningFormat="true"
       RetryDelayBase="2" />
 
-    <!-- TODO this fails on preprocessor directives -->
+    <ItemGroup>
+      <!-- -arch implicitly adds a Platform variable. -->
+      <CandleVariables Include="Platform" Value="$(MsiArch)" />
+    </ItemGroup>
+    
     <CreateWixBuildWixpack
       Cultures="en-us"
       DefineConstants="@(CandleVariables->'%(Identity)=%(Value)')"
